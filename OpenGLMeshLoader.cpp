@@ -125,6 +125,7 @@ Model_3DS model_rock;
 Model_3DS model_streetlamp;
 Model_3DS model_tree2;
 Model_3DS model_mailman;
+Model_3DS model_crop;
 
 // Textures
 GLTexture tex_ground;
@@ -752,42 +753,11 @@ void myDisplay(void)
 		glPushMatrix();
 		glTranslatef(crops[i].position.x, crops[i].position.y, crops[i].position.z);
 		
-		// Alternate between carrot-like and wheat-like appearance
-		if(i % 2 == 0) {
-			// Carrot - orange with green tops
-			glPushMatrix();
-			glTranslatef(0, 0.1f, 0);
-			glScalef(crops[i].scale * 0.15f, crops[i].scale * 0.3f, crops[i].scale * 0.15f);
-			glColor3f(1.0f, 0.5f, 0.0f); // Orange carrot
-			glutSolidCone(0.3f, 0.5f, 8, 8);
-			glPopMatrix();
-			
-			// Green leafy top
-			glPushMatrix();
-			glTranslatef(0, 0.35f, 0);
-			glScalef(crops[i].scale * 0.2f, crops[i].scale * 0.3f, crops[i].scale * 0.2f);
-			glColor3f(0.2f, 0.7f, 0.2f);
-			glutSolidSphere(0.3f, 8, 8);
-			glPopMatrix();
-		} else {
-			// Wheat - golden stalks
-			glPushMatrix();
-			glTranslatef(0, 0.25f, 0);
-			glScalef(crops[i].scale * 0.1f, crops[i].scale * 0.5f, crops[i].scale * 0.1f);
-			glColor3f(0.9f, 0.8f, 0.3f); // Golden wheat
-			glutSolidCone(0.2f, 1.0f, 6, 6);
-			glPopMatrix();
-			
-			// Wheat head
-			glPushMatrix();
-			glTranslatef(0, 0.75f, 0);
-			glScalef(crops[i].scale * 0.15f, crops[i].scale * 0.15f, crops[i].scale * 0.15f);
-			glColor3f(0.85f, 0.7f, 0.2f);
-			glutSolidSphere(0.3f, 8, 8);
-			glPopMatrix();
-		}
+		// Use grass-block model for crops
+		float cropScale = crops[i].scale * 0.3f;
+		glScalef(cropScale, cropScale, cropScale);
+		model_crop.Draw();
 		
-		glColor3f(1.0f, 1.0f, 1.0f);
 		glPopMatrix();
 	}
 	
@@ -990,11 +960,11 @@ void InitializeLevel()
 	srand((unsigned int)time(NULL));
 	
 	// Create houses (delivery targets)
-	houses.push_back(House(10, 1.0f, 15, 0));
-	houses.push_back(House(-15, 1.0f, 20, 90));
-	houses.push_back(House(20, 1.0f, -10, 180));
-	houses.push_back(House(-20, 1.0f, -15, 270));
-	houses.push_back(House(0, 1.0f, 25, 45));
+	houses.push_back(House(10, 0, 15, 0));
+	houses.push_back(House(-15, 0, 20, 90));
+	houses.push_back(House(20, 0, -10, 180));
+	houses.push_back(House(-20, 0, -15, 270));
+	houses.push_back(House(0, 0, 25, 45));
 	
 	// Create packages
 	for(int i = 0; i < totalPackages; i++) {
@@ -1060,6 +1030,7 @@ void LoadAssets()
 	model_tree.Load("Models/tree/Tree1.3ds");
 	model_mailman.Load("Models/mailman/real3dmodel.3ds");
 	model_rock.Load("Models/1elmla01hh-Rock1_BYTyroSmith/Rock1/Rock1.3ds");
+	model_crop.Load("Models/grass-block/grass-block.3DS");
 
 	// Loading texture files
 	tex_ground.Load("Textures/ground.bmp");
