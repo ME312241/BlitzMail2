@@ -1,4 +1,5 @@
 ﻿#pragma once
+#define GLUT_DISABLE_ATEXIT_HACK
 #include <glew.h>      // or "glew.h" depending on your setup
 #include <glut.h>      // or <GL/freeglut.h> if you use freeglut
 #include <cstdio>
