@@ -102,12 +102,13 @@ BlitzMail2/
 - **Visual Feedback**: Red screen flash when losing a life
 
 ### Environment
-- **Play Area**: 50×50 units
+- **Play Area**: 100×100 units (expanded from 50×50)
 - **Houses**: 5 delivery destinations
-- **Packages**: 5 randomly placed collectibles
+- **Packages**: 5 randomly placed collectibles with cardboard texture
 - **Obstacles**: 25 trees, 20 rocks, 10 fences
 - **Decorations**: 30 crop patches, 8 street lights
 - **Sky**: Full spherical skybox
+- **Player Model**: Visible mailman character in third-person view
 
 ## 🌟 Features in Detail
 
@@ -168,7 +169,6 @@ Two camera modes for different playstyles:
 
 Potential features for future versions:
 - 🔊 **Audio System**: Sound effects and background music
-- 🧑 **Player Model**: Render the mailman character
 - 🌍 **More Levels**: Suburban and city environments
 - 🏆 **Leaderboards**: High score tracking
 - 🎯 **Power-ups**: Speed boosts, time extensions

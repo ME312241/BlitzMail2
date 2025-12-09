@@ -437,7 +437,7 @@ void UpdatePlayer(float deltaTime)
 	}
 	
 	// Check boundaries
-	float boundary = 45.0f;
+	float boundary = 90.0f;
 	if(playerPos.x < -boundary) playerPos.x = -boundary;
 	if(playerPos.x > boundary) playerPos.x = boundary;
 	if(playerPos.z < -boundary) playerPos.z = -boundary;
@@ -462,13 +462,13 @@ void RenderGround()
 	glBegin(GL_QUADS);
 	glNormal3f(0, 1, 0);
 	glTexCoord2f(0, 0);
-	glVertex3f(-50, 0, -50);
-	glTexCoord2f(10, 0);
-	glVertex3f(50, 0, -50);
-	glTexCoord2f(10, 10);
-	glVertex3f(50, 0, 50);
-	glTexCoord2f(0, 10);
-	glVertex3f(-50, 0, 50);
+	glVertex3f(-100, 0, -100);
+	glTexCoord2f(20, 0);
+	glVertex3f(100, 0, -100);
+	glTexCoord2f(20, 20);
+	glVertex3f(100, 0, 100);
+	glTexCoord2f(0, 20);
+	glVertex3f(-100, 0, 100);
 	glEnd();
 	glPopMatrix();
 
@@ -506,10 +506,100 @@ void RenderPackage(float x, float y, float z, float scale)
 	glTranslatef(x, y, z);
 	glScalef(scale, scale, scale);
 	
-	// Simple box for package
-	glColor3f(0.7f, 0.5f, 0.3f);
+	// Simple box for package with cardboard color
+	glColor3f(0.8f, 0.6f, 0.4f);
 	glutSolidCube(1.0f);
 	
+	// Add tape stripes for better appearance
+	glColor3f(0.9f, 0.85f, 0.7f);
+	glPushMatrix();
+	glTranslatef(0, 0, 0.51f);
+	glScalef(0.2f, 1.0f, 0.02f);
+	glutSolidCube(1.0f);
+	glPopMatrix();
+	
+	glPushMatrix();
+	glTranslatef(0, 0.51f, 0);
+	glScalef(1.0f, 0.02f, 0.2f);
+	glutSolidCube(1.0f);
+	glPopMatrix();
+	
+	glColor3f(1.0f, 1.0f, 1.0f);
+	glPopMatrix();
+}
+
+//=======================================================================
+// Render Player Character (Mailman)
+//=======================================================================
+void RenderPlayer(float x, float y, float z, float rotation)
+{
+	glPushMatrix();
+	glTranslatef(x, y, z);
+	glRotatef(rotation, 0, 1, 0);
+	
+	// Body (torso)
+	glColor3f(0.2f, 0.3f, 0.6f); // Blue uniform
+	glPushMatrix();
+	glTranslatef(0, 0, 0);
+	glScalef(0.4f, 0.6f, 0.3f);
+	glutSolidCube(1.0f);
+	glPopMatrix();
+	
+	// Head
+	glColor3f(0.9f, 0.7f, 0.6f); // Skin tone
+	glPushMatrix();
+	glTranslatef(0, 0.5f, 0);
+	glutSolidSphere(0.2f, 16, 16);
+	glPopMatrix();
+	
+	// Cap
+	glColor3f(0.2f, 0.3f, 0.6f);
+	glPushMatrix();
+	glTranslatef(0, 0.65f, 0);
+	glScalef(1.0f, 0.3f, 1.0f);
+	glutSolidSphere(0.2f, 16, 16);
+	glPopMatrix();
+	
+	// Left arm
+	glColor3f(0.2f, 0.3f, 0.6f);
+	glPushMatrix();
+	glTranslatef(-0.3f, -0.1f, 0);
+	glScalef(0.12f, 0.5f, 0.12f);
+	glutSolidCube(1.0f);
+	glPopMatrix();
+	
+	// Right arm
+	glPushMatrix();
+	glTranslatef(0.3f, -0.1f, 0);
+	glScalef(0.12f, 0.5f, 0.12f);
+	glutSolidCube(1.0f);
+	glPopMatrix();
+	
+	// Left leg
+	glColor3f(0.3f, 0.3f, 0.3f); // Dark pants
+	glPushMatrix();
+	glTranslatef(-0.12f, -0.6f, 0);
+	glScalef(0.14f, 0.6f, 0.14f);
+	glutSolidCube(1.0f);
+	glPopMatrix();
+	
+	// Right leg
+	glPushMatrix();
+	glTranslatef(0.12f, -0.6f, 0);
+	glScalef(0.14f, 0.6f, 0.14f);
+	glutSolidCube(1.0f);
+	glPopMatrix();
+	
+	// Mail bag on shoulder
+	glColor3f(0.6f, 0.5f, 0.3f); // Brown bag
+	glPushMatrix();
+	glTranslatef(0.25f, 0.1f, -0.15f);
+	glRotatef(20, 0, 0, 1);
+	glScalef(0.25f, 0.3f, 0.15f);
+	glutSolidCube(1.0f);
+	glPopMatrix();
+	
+	glColor3f(1.0f, 1.0f, 1.0f);
 	glPopMatrix();
 }
 
@@ -758,6 +848,11 @@ void myDisplay(void)
 		}
 	}
 	
+	// Render player character (only in third-person view)
+	if(!isFirstPerson) {
+		RenderPlayer(playerPos.x, playerPos.y, playerPos.z, playerYaw);
+	}
+	
 	// Render carried package
 	if(hasPackage) {
 		glPushMatrix();
@@ -910,11 +1005,11 @@ void InitializeLevel()
 	srand((unsigned int)time(NULL));
 	
 	// Create houses (delivery targets)
-	houses.push_back(House(10, 0, 15, 0));
-	houses.push_back(House(-15, 0, 20, 90));
-	houses.push_back(House(20, 0, -10, 180));
-	houses.push_back(House(-20, 0, -15, 270));
-	houses.push_back(House(0, 0, 25, 45));
+	houses.push_back(House(10, 1.0f, 15, 0));
+	houses.push_back(House(-15, 1.0f, 20, 90));
+	houses.push_back(House(20, 1.0f, -10, 180));
+	houses.push_back(House(-20, 1.0f, -15, 270));
+	houses.push_back(House(0, 1.0f, 25, 45));
 	
 	// Create packages
 	for(int i = 0; i < totalPackages; i++) {
