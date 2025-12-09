@@ -753,7 +753,7 @@ void myDisplay(void)
 		glPushMatrix();
 		glTranslatef(crops[i].position.x, crops[i].position.y, crops[i].position.z);
 		
-		// Use grass-block model for crops with slight scale variation for variety
+		// Use grass-block model for crops
 		float cropScale = crops[i].scale * 0.3f;
 		glScalef(cropScale, cropScale, cropScale);
 		model_crop.Draw();
