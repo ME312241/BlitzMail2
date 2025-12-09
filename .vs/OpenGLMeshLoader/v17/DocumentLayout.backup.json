@@ -1,0 +1,51 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "A:\\College\\Sem 7\\Graphics\\Project 2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|A:\\COLLEGE\\SEM 7\\GRAPHICS\\PROJECT 2\\TEXTUREBUILDER.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|solutionrelative:TEXTUREBUILDER.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|C:\\PROGRAM FILES\\MICROSOFT VISUAL STUDIO\\2022\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.42.34433\\INCLUDE\\CSTDLIB||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TextureBuilder.h",
+              "DocumentMoniker": "A:\\College\\Sem 7\\Graphics\\Project 2\\TextureBuilder.h",
+              "RelativeDocumentMoniker": "TextureBuilder.h",
+              "ToolTip": "A:\\College\\Sem 7\\Graphics\\Project 2\\TextureBuilder.h",
+              "RelativeToolTip": "TextureBuilder.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-09T10:28:11.178Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "cstdlib",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\cstdlib",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\cstdlib",
+              "ViewState": "AgIAABwAAAAAAAAAAAAswDAAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-09T10:28:02.522Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
