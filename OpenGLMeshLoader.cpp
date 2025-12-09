@@ -751,9 +751,42 @@ void myDisplay(void)
 	for(size_t i = 0; i < crops.size(); i++) {
 		glPushMatrix();
 		glTranslatef(crops[i].position.x, crops[i].position.y, crops[i].position.z);
-		glScalef(crops[i].scale * 0.2f, crops[i].scale * 0.5f, crops[i].scale * 0.2f);
-		glColor3f(0.8f, 0.7f, 0.2f);
-		glutSolidCone(0.5f, 1.0f, 8, 8);
+		
+		// Alternate between carrot-like and wheat-like appearance
+		if(i % 2 == 0) {
+			// Carrot - orange with green tops
+			glPushMatrix();
+			glTranslatef(0, 0.1f, 0);
+			glScalef(crops[i].scale * 0.15f, crops[i].scale * 0.3f, crops[i].scale * 0.15f);
+			glColor3f(1.0f, 0.5f, 0.0f); // Orange carrot
+			glutSolidCone(0.3f, 0.5f, 8, 8);
+			glPopMatrix();
+			
+			// Green leafy top
+			glPushMatrix();
+			glTranslatef(0, 0.35f, 0);
+			glScalef(crops[i].scale * 0.2f, crops[i].scale * 0.3f, crops[i].scale * 0.2f);
+			glColor3f(0.2f, 0.7f, 0.2f);
+			glutSolidSphere(0.3f, 8, 8);
+			glPopMatrix();
+		} else {
+			// Wheat - golden stalks
+			glPushMatrix();
+			glTranslatef(0, 0.25f, 0);
+			glScalef(crops[i].scale * 0.1f, crops[i].scale * 0.5f, crops[i].scale * 0.1f);
+			glColor3f(0.9f, 0.8f, 0.3f); // Golden wheat
+			glutSolidCone(0.2f, 1.0f, 6, 6);
+			glPopMatrix();
+			
+			// Wheat head
+			glPushMatrix();
+			glTranslatef(0, 0.75f, 0);
+			glScalef(crops[i].scale * 0.15f, crops[i].scale * 0.15f, crops[i].scale * 0.15f);
+			glColor3f(0.85f, 0.7f, 0.2f);
+			glutSolidSphere(0.3f, 8, 8);
+			glPopMatrix();
+		}
+		
 		glColor3f(1.0f, 1.0f, 1.0f);
 		glPopMatrix();
 	}
