@@ -179,6 +179,12 @@ std::vector<StreetLight> streetLights;
 int currentPackageIndex = 0;
 
 //=======================================================================
+// Function Forward Declarations
+//=======================================================================
+void RenderPackage(float x, float y, float z, float scale);
+void RenderPlayer(float x, float y, float z, float rotation);
+
+//=======================================================================
 // Collision Detection
 //=======================================================================
 bool CheckCollision(Vector3 pos, float radius) {
@@ -506,6 +512,9 @@ void RenderPackage(float x, float y, float z, float scale)
 	glTranslatef(x, y, z);
 	glScalef(scale, scale, scale);
 	
+	// Package cube is 1.0 unit, tape positioned slightly beyond surface to avoid z-fighting
+	const float TAPE_OFFSET = 0.51f;
+	
 	// Simple box for package with cardboard color
 	glColor3f(0.8f, 0.6f, 0.4f);
 	glutSolidCube(1.0f);
@@ -513,19 +522,19 @@ void RenderPackage(float x, float y, float z, float scale)
 	// Add tape stripes for better appearance
 	glColor3f(0.9f, 0.85f, 0.7f);
 	glPushMatrix();
-	glTranslatef(0, 0, 0.51f);
+	glTranslatef(0, 0, TAPE_OFFSET);
 	glScalef(0.2f, 1.0f, 0.02f);
 	glutSolidCube(1.0f);
 	glPopMatrix();
 	
 	glPushMatrix();
-	glTranslatef(0, 0.51f, 0);
+	glTranslatef(0, TAPE_OFFSET, 0);
 	glScalef(1.0f, 0.02f, 0.2f);
 	glutSolidCube(1.0f);
 	glPopMatrix();
 	
-	glColor3f(1.0f, 1.0f, 1.0f);
 	glPopMatrix();
+	glColor3f(1.0f, 1.0f, 1.0f);
 }
 
 //=======================================================================
@@ -599,8 +608,8 @@ void RenderPlayer(float x, float y, float z, float rotation)
 	glutSolidCube(1.0f);
 	glPopMatrix();
 	
-	glColor3f(1.0f, 1.0f, 1.0f);
 	glPopMatrix();
+	glColor3f(1.0f, 1.0f, 1.0f);
 }
 
 //=======================================================================
@@ -1013,16 +1022,16 @@ void InitializeLevel()
 	
 	// Create packages
 	for(int i = 0; i < totalPackages; i++) {
-		float x = (rand() % 40) - 20;
-		float z = (rand() % 40) - 20;
+		float x = (rand() % 100) - 50;
+		float z = (rand() % 100) - 50;
 		packages.push_back(Package(x, 1.0f, z));
 		packages[i].targetHouseIndex = i % houses.size();
 	}
 	
 	// Create trees
 	for(int i = 0; i < 25; i++) {
-		float x = (rand() % 80) - 40;
-		float z = (rand() % 80) - 40;
+		float x = (rand() % 160) - 80;
+		float z = (rand() % 160) - 80;
 		// Avoid spawning too close to center
 		if(fabs(x) > 8 || fabs(z) > 8) {
 			trees.push_back(GameObject(x, 0, z, 0, 1.0f + (rand() % 50) / 100.0f));
@@ -1031,8 +1040,8 @@ void InitializeLevel()
 	
 	// Create rocks
 	for(int i = 0; i < 20; i++) {
-		float x = (rand() % 80) - 40;
-		float z = (rand() % 80) - 40;
+		float x = (rand() % 160) - 80;
+		float z = (rand() % 160) - 80;
 		if(fabs(x) > 5 || fabs(z) > 5) {
 			rocks.push_back(GameObject(x, 0.5f, z, 0, 0.8f + (rand() % 40) / 100.0f));
 		}
@@ -1040,8 +1049,8 @@ void InitializeLevel()
 	
 	// Create fences
 	for(int i = 0; i < 10; i++) {
-		float x = (rand() % 60) - 30;
-		float z = (rand() % 60) - 30;
+		float x = (rand() % 140) - 70;
+		float z = (rand() % 140) - 70;
 		if(fabs(x) > 10 || fabs(z) > 10) {
 			fences.push_back(GameObject(x, 0, z, rand() % 360, 1.0f));
 		}
@@ -1049,8 +1058,8 @@ void InitializeLevel()
 	
 	// Create crops
 	for(int i = 0; i < 30; i++) {
-		float x = (rand() % 60) - 30;
-		float z = (rand() % 60) - 30;
+		float x = (rand() % 120) - 60;
+		float z = (rand() % 120) - 60;
 		crops.push_back(GameObject(x, 0, z, 0, 1.0f));
 	}
 	
