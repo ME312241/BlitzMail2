@@ -704,6 +704,7 @@ void myDisplay(void)
 		glPushMatrix();
 		glTranslatef(houses[i].position.x, houses[i].position.y, houses[i].position.z);
 		glRotatef(houses[i].rotation, 0, 1, 0);
+		glRotatef(-90, 1, 0, 0);  // Rotate to make house upright
 		glScalef(houses[i].scale * 2.0f, houses[i].scale * 2.0f, houses[i].scale * 2.0f);
 		model_house.Draw();
 		glPopMatrix();
@@ -722,6 +723,7 @@ void myDisplay(void)
 	for(size_t i = 0; i < rocks.size(); i++) {
 		glPushMatrix();
 		glTranslatef(rocks[i].position.x, rocks[i].position.y, rocks[i].position.z);
+		glRotatef(-90, 1, 0, 0);  // Rotate rock model to proper orientation
 		glScalef(rocks[i].scale * 0.5f, rocks[i].scale * 0.5f, rocks[i].scale * 0.5f);
 		model_rock.Draw();
 		glPopMatrix();
@@ -958,11 +960,11 @@ void InitializeLevel()
 	srand((unsigned int)time(NULL));
 	
 	// Create houses (delivery targets)
-	houses.push_back(House(10, 1.0f, 15, 0));
-	houses.push_back(House(-15, 1.0f, 20, 90));
-	houses.push_back(House(20, 1.0f, -10, 180));
-	houses.push_back(House(-20, 1.0f, -15, 270));
-	houses.push_back(House(0, 1.0f, 25, 45));
+	houses.push_back(House(10, 0, 15, 0));
+	houses.push_back(House(-15, 0, 20, 90));
+	houses.push_back(House(20, 0, -10, 180));
+	houses.push_back(House(-20, 0, -15, 270));
+	houses.push_back(House(0, 0, 25, 45));
 	
 	// Create packages
 	for(int i = 0; i < totalPackages; i++) {
