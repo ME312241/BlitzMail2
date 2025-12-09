@@ -546,8 +546,7 @@ void RenderPlayer(float x, float y, float z, float rotation)
 	glPushMatrix();
 	glTranslatef(x, y - 1.5f, z);  // Adjust Y position to align with ground
 	glRotatef(rotation, 0, 1, 0);
-	glRotatef(-90, 1, 0, 0);  // Rotate model to stand upright
-	glScalef(0.015f, 0.015f, 0.015f);  // Scale mailman model to appropriate size
+	glScalef(0.015f, 0.015f, 0.015f);
 	
 	model_mailman.Draw();
 	
@@ -703,8 +702,7 @@ void myDisplay(void)
 		glPushMatrix();
 		glTranslatef(houses[i].position.x, houses[i].position.y, houses[i].position.z);
 		glRotatef(houses[i].rotation, 0, 1, 0);
-		glRotatef(-90, 1, 0, 0);  // Rotate to make house upright
-		glScalef(houses[i].scale * 2.0f, houses[i].scale * 2.0f, houses[i].scale * 2.0f);
+		glScalef(houses[i].scale * 0.5f, houses[i].scale * 0.5f, houses[i].scale * 0.5f);
 		model_house.Draw();
 		glPopMatrix();
 	}
@@ -912,9 +910,9 @@ void myMouseMotion(int x, int y)
 	playerYaw += deltaX * 0.2f;
 	playerPitch -= deltaY * 0.2f;
 	
-	// Clamp pitch
-	if(playerPitch > 89.0f) playerPitch = 89.0f;
-	if(playerPitch < -89.0f) playerPitch = -89.0f;
+	// Clamp pitch - Extended to 180 for 360 degree view
+	if (playerPitch > 180.0f) playerPitch = 180.0f;
+	if (playerPitch < -180.0f) playerPitch = -180.0f;
 	
 	lastMouseX = x;
 	lastMouseY = y;
