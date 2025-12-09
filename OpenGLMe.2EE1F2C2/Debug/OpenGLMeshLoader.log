@@ -1,11 +1,22 @@
-﻿  Model_3DS.cpp
+﻿  GLTexture.cpp
+A:\College\Sem 7\Graphics\Project 2\BlitzMail2\GLTexture.cpp(61,16): warning C4996: '_strlwr': This function or variable may be unsafe. Consider using _strlwr_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+A:\College\Sem 7\Graphics\Project 2\BlitzMail2\GLTexture.cpp(65,17): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+A:\College\Sem 7\Graphics\Project 2\BlitzMail2\GLTexture.cpp(77,16): warning C4996: '_strlwr': This function or variable may be unsafe. Consider using _strlwr_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+A:\College\Sem 7\Graphics\Project 2\BlitzMail2\GLTexture.cpp(146,15): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Model_3DS.cpp
   A:\College\Sem 7\Graphics\Project 2\BlitzMail2\Model_3DS.cpp(78) : You need to uncomment this if you are using MFC
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\cstdlib(49,25): error C2039: 'exit': is not a member of '`global namespace''
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\cstdlib(49,25): error C2039: 'exit': is not a member of '`global namespace''
   (compiling source file 'Model_3DS.cpp')
   
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\cstdlib(49,13): error C2873: 'exit': symbol cannot be used in a using-declaration
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\cstdlib(49,13): error C2873: 'exit': symbol cannot be used in a using-declaration
   (compiling source file 'Model_3DS.cpp')
   
 A:\College\Sem 7\Graphics\Project 2\BlitzMail2\Model_3DS.cpp(182,10): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 A:\College\Sem 7\Graphics\Project 2\BlitzMail2\Model_3DS.cpp(212,11): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 A:\College\Sem 7\Graphics\Project 2\BlitzMail2\Model_3DS.cpp(764,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  OpenGLMeshLoader.cpp
+A:\College\Sem 7\Graphics\Project 2\BlitzMail2\OpenGLMeshLoader.cpp(1,9): warning C4005: '_CRT_DECLARE_NONSTDC_NAMES': macro redefinition
+      A:\College\Sem 7\Graphics\Project 2\BlitzMail2\OpenGLMeshLoader.cpp(1,9):
+      '_CRT_DECLARE_NONSTDC_NAMES' previously declared on the command line
+  
+  Generating Code...

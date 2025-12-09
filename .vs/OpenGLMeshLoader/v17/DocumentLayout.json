@@ -3,15 +3,18 @@
   "WorkspaceRootPath": "A:\\College\\Sem 7\\Graphics\\Project 2\\BlitzMail2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|A:\\COLLEGE\\SEM 7\\GRAPHICS\\PROJECT 2\\BLITZMAIL2\\TEXTUREBUILDER.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|solutionrelative:TEXTUREBUILDER.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|C:\\PROGRAM FILES\\MICROSOFT VISUAL STUDIO\\2022\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.42.34433\\INCLUDE\\CSTDLIB||{3B902123-F8A7-4915-9F01-361F908088D0}"
+      "AbsoluteMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|C:\\PROGRAM FILES\\MICROSOFT VISUAL STUDIO\\2022\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.41.34120\\INCLUDE\\CSTDLIB||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|A:\\College\\Sem 7\\Graphics\\Project 2\\BlitzMail2\\OpenGLMeshLoader.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|solutionrelative:OpenGLMeshLoader.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\College\\Sem 7\\Graphics\\Project 2\\BlitzMail2\\TextureBuilder.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TextureBuilder.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\cstdlib||{3B902123-F8A7-4915-9F01-361F908088D0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -21,44 +24,53 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "cstdlib",
-              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\cstdlib",
-              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\cstdlib",
-              "ViewState": "AgIAABwAAAAAAAAAAAAqwDMAAAAdAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\include\\cstdlib",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\include\\cstdlib",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-12-09T11:40:18.502Z",
+              "WhenOpened": "2025-12-09T12:51:29.753Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
+              "Title": "cstdlib",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\cstdlib",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\cstdlib",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAjwDAAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-09T11:40:18.502Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "OpenGLMeshLoader.cpp",
               "DocumentMoniker": "A:\\College\\Sem 7\\Graphics\\Project 2\\BlitzMail2\\OpenGLMeshLoader.cpp",
               "RelativeDocumentMoniker": "OpenGLMeshLoader.cpp",
               "ToolTip": "A:\\College\\Sem 7\\Graphics\\Project 2\\BlitzMail2\\OpenGLMeshLoader.cpp",
               "RelativeToolTip": "OpenGLMeshLoader.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-12-09T11:37:01.848Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "TextureBuilder.h",
               "DocumentMoniker": "A:\\College\\Sem 7\\Graphics\\Project 2\\BlitzMail2\\TextureBuilder.h",
               "RelativeDocumentMoniker": "TextureBuilder.h",
               "ToolTip": "A:\\College\\Sem 7\\Graphics\\Project 2\\BlitzMail2\\TextureBuilder.h",
               "RelativeToolTip": "TextureBuilder.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-12-09T11:04:30.684Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-09T11:04:30.684Z"
             }
           ]
         }

@@ -1,14 +1,18 @@
-﻿#define _CRT_DECLARE_NONSTDC_NAMES 0
-#define GLUT_DISABLE_ATEXIT_HACK
-#include "TextureBuilder.h"
+﻿#include "TextureBuilder.h"
 #include "Model_3DS.h"
 #include "GLTexture.h"
-#include <glut.h>
+
+#include <stdlib.h>        // ← MUST BE BEFORE glut.h
 #include <cmath>
 #include <vector>
 #include <ctime>
 #include <string>
 
+#include <glut.h>          
+
+#ifdef exit
+#undef exit
+#endif
 int WIDTH = 1280;
 int HEIGHT = 720;
 

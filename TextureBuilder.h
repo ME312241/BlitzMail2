@@ -5,7 +5,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstddef>
-
+#include <stdlib.h>
 // ================================================================
 // LoadBMP – fully self-contained, no glaux, works 100 %
 // ================================================================
