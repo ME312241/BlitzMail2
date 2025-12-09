@@ -1,10 +1,11 @@
+﻿#define _CRT_DECLARE_NONSTDC_NAMES 0
+#define GLUT_DISABLE_ATEXIT_HACK
 #include "TextureBuilder.h"
 #include "Model_3DS.h"
 #include "GLTexture.h"
 #include <glut.h>
 #include <cmath>
 #include <vector>
-#include <cstdlib>
 #include <ctime>
 #include <string>
 
