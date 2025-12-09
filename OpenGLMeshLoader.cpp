@@ -179,6 +179,12 @@ std::vector<StreetLight> streetLights;
 int currentPackageIndex = 0;
 
 //=======================================================================
+// Function Forward Declarations
+//=======================================================================
+void RenderPackage(float x, float y, float z, float scale);
+void RenderPlayer(float x, float y, float z, float rotation);
+
+//=======================================================================
 // Collision Detection
 //=======================================================================
 bool CheckCollision(Vector3 pos, float radius) {
@@ -437,7 +443,7 @@ void UpdatePlayer(float deltaTime)
 	}
 	
 	// Check boundaries
-	float boundary = 45.0f;
+	float boundary = 90.0f;
 	if(playerPos.x < -boundary) playerPos.x = -boundary;
 	if(playerPos.x > boundary) playerPos.x = boundary;
 	if(playerPos.z < -boundary) playerPos.z = -boundary;
@@ -462,13 +468,13 @@ void RenderGround()
 	glBegin(GL_QUADS);
 	glNormal3f(0, 1, 0);
 	glTexCoord2f(0, 0);
-	glVertex3f(-50, 0, -50);
-	glTexCoord2f(10, 0);
-	glVertex3f(50, 0, -50);
-	glTexCoord2f(10, 10);
-	glVertex3f(50, 0, 50);
-	glTexCoord2f(0, 10);
-	glVertex3f(-50, 0, 50);
+	glVertex3f(-100, 0, -100);
+	glTexCoord2f(20, 0);
+	glVertex3f(100, 0, -100);
+	glTexCoord2f(20, 20);
+	glVertex3f(100, 0, 100);
+	glTexCoord2f(0, 20);
+	glVertex3f(-100, 0, 100);
 	glEnd();
 	glPopMatrix();
 
@@ -506,11 +512,104 @@ void RenderPackage(float x, float y, float z, float scale)
 	glTranslatef(x, y, z);
 	glScalef(scale, scale, scale);
 	
-	// Simple box for package
-	glColor3f(0.7f, 0.5f, 0.3f);
+	// Package cube is 1.0 unit, tape positioned slightly beyond surface to avoid z-fighting
+	const float TAPE_OFFSET = 0.51f;
+	
+	// Simple box for package with cardboard color
+	glColor3f(0.8f, 0.6f, 0.4f);
 	glutSolidCube(1.0f);
 	
+	// Add tape stripes for better appearance
+	glColor3f(0.9f, 0.85f, 0.7f);
+	glPushMatrix();
+	glTranslatef(0, 0, TAPE_OFFSET);
+	glScalef(0.2f, 1.0f, 0.02f);
+	glutSolidCube(1.0f);
 	glPopMatrix();
+	
+	glPushMatrix();
+	glTranslatef(0, TAPE_OFFSET, 0);
+	glScalef(1.0f, 0.02f, 0.2f);
+	glutSolidCube(1.0f);
+	glPopMatrix();
+	
+	glPopMatrix();
+	glColor3f(1.0f, 1.0f, 1.0f);
+}
+
+//=======================================================================
+// Render Player Character (Mailman)
+//=======================================================================
+void RenderPlayer(float x, float y, float z, float rotation)
+{
+	glPushMatrix();
+	glTranslatef(x, y, z);
+	glRotatef(rotation, 0, 1, 0);
+	
+	// Body (torso)
+	glColor3f(0.2f, 0.3f, 0.6f); // Blue uniform
+	glPushMatrix();
+	glTranslatef(0, 0, 0);
+	glScalef(0.4f, 0.6f, 0.3f);
+	glutSolidCube(1.0f);
+	glPopMatrix();
+	
+	// Head
+	glColor3f(0.9f, 0.7f, 0.6f); // Skin tone
+	glPushMatrix();
+	glTranslatef(0, 0.5f, 0);
+	glutSolidSphere(0.2f, 16, 16);
+	glPopMatrix();
+	
+	// Cap
+	glColor3f(0.2f, 0.3f, 0.6f);
+	glPushMatrix();
+	glTranslatef(0, 0.65f, 0);
+	glScalef(1.0f, 0.3f, 1.0f);
+	glutSolidSphere(0.2f, 16, 16);
+	glPopMatrix();
+	
+	// Left arm
+	glColor3f(0.2f, 0.3f, 0.6f);
+	glPushMatrix();
+	glTranslatef(-0.3f, -0.1f, 0);
+	glScalef(0.12f, 0.5f, 0.12f);
+	glutSolidCube(1.0f);
+	glPopMatrix();
+	
+	// Right arm
+	glPushMatrix();
+	glTranslatef(0.3f, -0.1f, 0);
+	glScalef(0.12f, 0.5f, 0.12f);
+	glutSolidCube(1.0f);
+	glPopMatrix();
+	
+	// Left leg
+	glColor3f(0.3f, 0.3f, 0.3f); // Dark pants
+	glPushMatrix();
+	glTranslatef(-0.12f, -0.6f, 0);
+	glScalef(0.14f, 0.6f, 0.14f);
+	glutSolidCube(1.0f);
+	glPopMatrix();
+	
+	// Right leg
+	glPushMatrix();
+	glTranslatef(0.12f, -0.6f, 0);
+	glScalef(0.14f, 0.6f, 0.14f);
+	glutSolidCube(1.0f);
+	glPopMatrix();
+	
+	// Mail bag on shoulder
+	glColor3f(0.6f, 0.5f, 0.3f); // Brown bag
+	glPushMatrix();
+	glTranslatef(0.25f, 0.1f, -0.15f);
+	glRotatef(20, 0, 0, 1);
+	glScalef(0.25f, 0.3f, 0.15f);
+	glutSolidCube(1.0f);
+	glPopMatrix();
+	
+	glPopMatrix();
+	glColor3f(1.0f, 1.0f, 1.0f);
 }
 
 //=======================================================================
@@ -758,6 +857,11 @@ void myDisplay(void)
 		}
 	}
 	
+	// Render player character (only in third-person view)
+	if(!isFirstPerson) {
+		RenderPlayer(playerPos.x, playerPos.y, playerPos.z, playerYaw);
+	}
+	
 	// Render carried package
 	if(hasPackage) {
 		glPushMatrix();
@@ -910,24 +1014,24 @@ void InitializeLevel()
 	srand((unsigned int)time(NULL));
 	
 	// Create houses (delivery targets)
-	houses.push_back(House(10, 0, 15, 0));
-	houses.push_back(House(-15, 0, 20, 90));
-	houses.push_back(House(20, 0, -10, 180));
-	houses.push_back(House(-20, 0, -15, 270));
-	houses.push_back(House(0, 0, 25, 45));
+	houses.push_back(House(10, 1.0f, 15, 0));
+	houses.push_back(House(-15, 1.0f, 20, 90));
+	houses.push_back(House(20, 1.0f, -10, 180));
+	houses.push_back(House(-20, 1.0f, -15, 270));
+	houses.push_back(House(0, 1.0f, 25, 45));
 	
 	// Create packages
 	for(int i = 0; i < totalPackages; i++) {
-		float x = (rand() % 40) - 20;
-		float z = (rand() % 40) - 20;
+		float x = (rand() % 100) - 50;
+		float z = (rand() % 100) - 50;
 		packages.push_back(Package(x, 1.0f, z));
 		packages[i].targetHouseIndex = i % houses.size();
 	}
 	
 	// Create trees
 	for(int i = 0; i < 25; i++) {
-		float x = (rand() % 80) - 40;
-		float z = (rand() % 80) - 40;
+		float x = (rand() % 160) - 80;
+		float z = (rand() % 160) - 80;
 		// Avoid spawning too close to center
 		if(fabs(x) > 8 || fabs(z) > 8) {
 			trees.push_back(GameObject(x, 0, z, 0, 1.0f + (rand() % 50) / 100.0f));
@@ -936,8 +1040,8 @@ void InitializeLevel()
 	
 	// Create rocks
 	for(int i = 0; i < 20; i++) {
-		float x = (rand() % 80) - 40;
-		float z = (rand() % 80) - 40;
+		float x = (rand() % 160) - 80;
+		float z = (rand() % 160) - 80;
 		if(fabs(x) > 5 || fabs(z) > 5) {
 			rocks.push_back(GameObject(x, 0.5f, z, 0, 0.8f + (rand() % 40) / 100.0f));
 		}
@@ -945,8 +1049,8 @@ void InitializeLevel()
 	
 	// Create fences
 	for(int i = 0; i < 10; i++) {
-		float x = (rand() % 60) - 30;
-		float z = (rand() % 60) - 30;
+		float x = (rand() % 140) - 70;
+		float z = (rand() % 140) - 70;
 		if(fabs(x) > 10 || fabs(z) > 10) {
 			fences.push_back(GameObject(x, 0, z, rand() % 360, 1.0f));
 		}
@@ -954,8 +1058,8 @@ void InitializeLevel()
 	
 	// Create crops
 	for(int i = 0; i < 30; i++) {
-		float x = (rand() % 60) - 30;
-		float z = (rand() % 60) - 30;
+		float x = (rand() % 120) - 60;
+		float z = (rand() % 120) - 60;
 		crops.push_back(GameObject(x, 0, z, 0, 1.0f));
 	}
 	
