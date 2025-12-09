@@ -124,6 +124,7 @@ Model_3DS model_fence;
 Model_3DS model_rock;
 Model_3DS model_streetlamp;
 Model_3DS model_tree2;
+Model_3DS model_mailman;
 
 // Textures
 GLTexture tex_ground;
@@ -543,70 +544,12 @@ void RenderPackage(float x, float y, float z, float scale)
 void RenderPlayer(float x, float y, float z, float rotation)
 {
 	glPushMatrix();
-	glTranslatef(x, y, z);
+	glTranslatef(x, y - 1.5f, z);  // Adjust Y position to align with ground
 	glRotatef(rotation, 0, 1, 0);
+	glRotatef(-90, 1, 0, 0);  // Rotate model to stand upright
+	glScalef(0.015f, 0.015f, 0.015f);  // Scale mailman model to appropriate size
 	
-	// Body (torso)
-	glColor3f(0.2f, 0.3f, 0.6f); // Blue uniform
-	glPushMatrix();
-	glTranslatef(0, 0, 0);
-	glScalef(0.4f, 0.6f, 0.3f);
-	glutSolidCube(1.0f);
-	glPopMatrix();
-	
-	// Head
-	glColor3f(0.9f, 0.7f, 0.6f); // Skin tone
-	glPushMatrix();
-	glTranslatef(0, 0.5f, 0);
-	glutSolidSphere(0.2f, 16, 16);
-	glPopMatrix();
-	
-	// Cap
-	glColor3f(0.2f, 0.3f, 0.6f);
-	glPushMatrix();
-	glTranslatef(0, 0.65f, 0);
-	glScalef(1.0f, 0.3f, 1.0f);
-	glutSolidSphere(0.2f, 16, 16);
-	glPopMatrix();
-	
-	// Left arm
-	glColor3f(0.2f, 0.3f, 0.6f);
-	glPushMatrix();
-	glTranslatef(-0.3f, -0.1f, 0);
-	glScalef(0.12f, 0.5f, 0.12f);
-	glutSolidCube(1.0f);
-	glPopMatrix();
-	
-	// Right arm
-	glPushMatrix();
-	glTranslatef(0.3f, -0.1f, 0);
-	glScalef(0.12f, 0.5f, 0.12f);
-	glutSolidCube(1.0f);
-	glPopMatrix();
-	
-	// Left leg
-	glColor3f(0.3f, 0.3f, 0.3f); // Dark pants
-	glPushMatrix();
-	glTranslatef(-0.12f, -0.6f, 0);
-	glScalef(0.14f, 0.6f, 0.14f);
-	glutSolidCube(1.0f);
-	glPopMatrix();
-	
-	// Right leg
-	glPushMatrix();
-	glTranslatef(0.12f, -0.6f, 0);
-	glScalef(0.14f, 0.6f, 0.14f);
-	glutSolidCube(1.0f);
-	glPopMatrix();
-	
-	// Mail bag on shoulder
-	glColor3f(0.6f, 0.5f, 0.3f); // Brown bag
-	glPushMatrix();
-	glTranslatef(0.25f, 0.1f, -0.15f);
-	glRotatef(20, 0, 0, 1);
-	glScalef(0.25f, 0.3f, 0.15f);
-	glutSolidCube(1.0f);
-	glPopMatrix();
+	model_mailman.Draw();
 	
 	glPopMatrix();
 	glColor3f(1.0f, 1.0f, 1.0f);
@@ -760,7 +703,8 @@ void myDisplay(void)
 		glPushMatrix();
 		glTranslatef(houses[i].position.x, houses[i].position.y, houses[i].position.z);
 		glRotatef(houses[i].rotation, 0, 1, 0);
-		glScalef(houses[i].scale, houses[i].scale, houses[i].scale);
+		glRotatef(-90, 1, 0, 0);  // Rotate to make house upright
+		glScalef(houses[i].scale * 2.0f, houses[i].scale * 2.0f, houses[i].scale * 2.0f);
 		model_house.Draw();
 		glPopMatrix();
 	}
@@ -778,10 +722,9 @@ void myDisplay(void)
 	for(size_t i = 0; i < rocks.size(); i++) {
 		glPushMatrix();
 		glTranslatef(rocks[i].position.x, rocks[i].position.y, rocks[i].position.z);
+		glRotatef(-90, 1, 0, 0);  // Rotate rock model to proper orientation
 		glScalef(rocks[i].scale * 0.5f, rocks[i].scale * 0.5f, rocks[i].scale * 0.5f);
-		glColor3f(0.5f, 0.5f, 0.5f);
-		glutSolidSphere(1.0f, 16, 16);
-		glColor3f(1.0f, 1.0f, 1.0f);
+		model_rock.Draw();
 		glPopMatrix();
 	}
 	
@@ -1082,6 +1025,8 @@ void LoadAssets()
 	// Loading Model files
 	model_house.Load("Models/house/house.3DS");
 	model_tree.Load("Models/tree/Tree1.3ds");
+	model_mailman.Load("Models/mailman/real3dmodel.3ds");
+	model_rock.Load("Models/1elmla01hh-Rock1_BYTyroSmith/Rock1/Rock1.3ds");
 
 	// Loading texture files
 	tex_ground.Load("Textures/ground.bmp");
