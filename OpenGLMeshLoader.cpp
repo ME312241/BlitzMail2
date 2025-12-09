@@ -48,6 +48,10 @@ public:
 		return sqrt(x*x + y*y + z*z);
 	}
 	
+	float lengthSquared() const {
+		return x*x + y*y + z*z;
+	}
+	
 	Vector3 normalize() const {
 		float len = length();
 		if(len > 0) return Vector3(x/len, y/len, z/len);
@@ -537,7 +541,7 @@ void RenderUI()
 	glColor3f(1.0f, 1.0f, 1.0f);
 	glRasterPos2f(20, HEIGHT - 30);
 	char scoreText[50];
-	sprintf_s(scoreText, "Score: %d", playerScore);
+	sprintf_s(scoreText, sizeof(scoreText), "Score: %d", playerScore);
 	for(int i = 0; scoreText[i] != '\0'; i++) {
 		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, scoreText[i]);
 	}
@@ -545,17 +549,17 @@ void RenderUI()
 	// Lives
 	glRasterPos2f(20, HEIGHT - 60);
 	char livesText[50];
-	sprintf_s(livesText, "Lives: %d", playerLives);
+	sprintf_s(livesText, sizeof(livesText), "Lives: %d", playerLives);
 	for(int i = 0; livesText[i] != '\0'; i++) {
 		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, livesText[i]);
 	}
 	
 	// Package timer
 	if(hasPackage) {
-		glColor3f(packageTimer < 10.0f ? 1.0f : 1.0f, packageTimer < 10.0f ? 0.0f : 1.0f, 0.0f);
+		glColor3f(1.0f, packageTimer < 10.0f ? 0.0f : 1.0f, 0.0f);
 		glRasterPos2f(20, HEIGHT - 90);
 		char timerText[50];
-		sprintf_s(timerText, "Time: %.1f", packageTimer);
+		sprintf_s(timerText, sizeof(timerText), "Time: %.1f", packageTimer);
 		for(int i = 0; timerText[i] != '\0'; i++) {
 			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, timerText[i]);
 		}
@@ -565,7 +569,7 @@ void RenderUI()
 	glColor3f(1.0f, 1.0f, 1.0f);
 	glRasterPos2f(20, HEIGHT - 120);
 	char deliveriesText[50];
-	sprintf_s(deliveriesText, "Deliveries: %d/%d", deliveredPackages, totalPackages);
+	sprintf_s(deliveriesText, sizeof(deliveriesText), "Deliveries: %d/%d", deliveredPackages, totalPackages);
 	for(int i = 0; deliveriesText[i] != '\0'; i++) {
 		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, deliveriesText[i]);
 	}
@@ -590,7 +594,7 @@ void RenderUI()
 		glColor3f(1.0f, 1.0f, 1.0f);
 		glRasterPos2f(WIDTH/2 - 100, HEIGHT/2 - 30);
 		char scoreText2[50];
-		sprintf_s(scoreText2, "Final Score: %d", playerScore);
+		sprintf_s(scoreText2, sizeof(scoreText2), "Final Score: %d", playerScore);
 		for(int i = 0; scoreText2[i] != '\0'; i++) {
 			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, scoreText2[i]);
 		}
@@ -616,7 +620,7 @@ void RenderUI()
 		glColor3f(1.0f, 1.0f, 1.0f);
 		glRasterPos2f(WIDTH/2 - 100, HEIGHT/2 - 30);
 		char scoreText3[50];
-		sprintf_s(scoreText3, "Final Score: %d", playerScore);
+		sprintf_s(scoreText3, sizeof(scoreText3), "Final Score: %d", playerScore);
 		for(int i = 0; scoreText3[i] != '\0'; i++) {
 			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, scoreText3[i]);
 		}
@@ -920,7 +924,7 @@ void InitializeLevel()
 		float x = (rand() % 80) - 40;
 		float z = (rand() % 80) - 40;
 		// Avoid spawning too close to center
-		if(abs(x) > 8 || abs(z) > 8) {
+		if(fabs(x) > 8 || fabs(z) > 8) {
 			trees.push_back(GameObject(x, 0, z, 0, 1.0f + (rand() % 50) / 100.0f));
 		}
 	}
@@ -929,7 +933,7 @@ void InitializeLevel()
 	for(int i = 0; i < 20; i++) {
 		float x = (rand() % 80) - 40;
 		float z = (rand() % 80) - 40;
-		if(abs(x) > 5 || abs(z) > 5) {
+		if(fabs(x) > 5 || fabs(z) > 5) {
 			rocks.push_back(GameObject(x, 0.5f, z, 0, 0.8f + (rand() % 40) / 100.0f));
 		}
 	}
@@ -938,7 +942,7 @@ void InitializeLevel()
 	for(int i = 0; i < 10; i++) {
 		float x = (rand() % 60) - 30;
 		float z = (rand() % 60) - 30;
-		if(abs(x) > 10 || abs(z) > 10) {
+		if(fabs(x) > 10 || fabs(z) > 10) {
 			fences.push_back(GameObject(x, 0, z, rand() % 360, 1.0f));
 		}
 	}
